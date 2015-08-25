@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825060559) do
+ActiveRecord::Schema.define(version: 20150825144020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contacted_members", force: :cascade do |t|
+    t.integer  "member"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contacted_members", ["member"], name: "index_contacted_members_on_member", using: :btree
+
+  create_table "member_infos", force: :cascade do |t|
+    t.integer  "age"
+    t.string   "gender"
+    t.boolean  "smoker"
+    t.boolean  "drinker"
+    t.integer  "children"
+    t.string   "relationship_status"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "member_id"
+  end
+
+  add_index "member_infos", ["member_id"], name: "index_member_infos_on_member_id", using: :btree
 
   create_table "members", force: :cascade do |t|
     t.string   "first_name"
@@ -28,4 +50,15 @@ ActiveRecord::Schema.define(version: 20150825060559) do
     t.datetime "avatar_updated_at"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text     "message_text"
+    t.integer  "member_id"
+    t.integer  "from_member_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "messages", ["member_id"], name: "index_messages_on_member_id", using: :btree
+
+  add_foreign_key "member_infos", "members"
 end
