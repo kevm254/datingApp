@@ -14,10 +14,19 @@
         <li><%= link_to "search", {controller: "members", action: "index"} %></li>
         <li><%= link_to "inbox", {controller: "members", action: "index"} %></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="../navbar-static-top/">Inbox</a></li>
-        <li><a href="../navbar-fixed-top">Logout</a></li>
-      </ul>
+
+      <!--<ul class="nav navbar-nav navbar-right">-->
+        <!--<li class="active"><a href="../navbar-static-top/">Inbox</a></li>-->
+        <!--<li><a href="../navbar-fixed-top">Logout</a></li>-->
+      <!--</ul>-->
+      <p class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+            Logged in as <strong><%= current_user.email %></strong>.
+            <%= link_to %> 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> | <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+        <% else %>
+            <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link' %> | <%= link_to "Login", new_user_session_path, :class => 'navbar-link' %>
+        <% end  %>
+      </p>
 
     </div><!-- /.nav-collapse -->
   </div><!-- /.container-fluid -->
