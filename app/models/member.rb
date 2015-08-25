@@ -8,6 +8,8 @@ class Member < ActiveRecord::Base
   has_one :member_info, autosave: true
   has_many :messages
   has_many :contacted_members
+  has_many :hobbies
+  belongs_to :user
 
   validates :first_name, :last_name, :description, :presence => true,
     :uniqueness => { :case_sensitive => true }
