@@ -26,13 +26,14 @@ class MembersController < ApplicationController
   # POST /members.json
   def create
     @member = Member.new(member_params)
-    params.require(:member).permit(:first_name, :last_name, :description, :avatar)
     respond_to do |format|
       if @member.save
+        current_user.member = @member
+        current_user.save
         format.html { redirect_to @member, notice: 'Member was successfully created.' }
-        format.json { render :show, status: :created, location: @member }
+        format.json { render action: 'show', status: :created, location: @member }
       else
-        format.html { render :new }
+        format.html { render action: 'new' }
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
     end
