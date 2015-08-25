@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root to: "members#index"
   devise_for :users
-  resources :members
+  resources :members do
+    collection do
+      get 'search'
+    end
+  end
   get 'testpage/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -16,6 +16,7 @@ class MembersController < ApplicationController
   # GET /members/new
   def new
     @member = Member.new
+    @member.build_member_info
   end
 
   # GET /members/1/edit
@@ -69,6 +70,12 @@ class MembersController < ApplicationController
     # end
   end
 
+  def search
+    preferences = MemberPreferences.new(member_preferences_params)
+    cookies.permanent[:memberpreferences] = preferences.to_json
+    redirect_to members_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
@@ -77,6 +84,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:first_name, :last_name, :description)
+      params.require(:member).permit(:first_name, :last_name, :description, :avatar, member_info_attributes: [:smoker, :gender, :relationship_status, :age, :drinker])
     end
 end

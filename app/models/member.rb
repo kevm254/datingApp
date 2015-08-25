@@ -13,4 +13,6 @@ class Member < ActiveRecord::Base
 
   validates :first_name, :last_name, :description, :presence => true,
     :uniqueness => { :case_sensitive => true }
+
+  accepts_nested_attributes_for :member_info, :hobbies
 end

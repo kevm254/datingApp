@@ -1,33 +1,80 @@
 <%= form_for @member, :url => members_path, :html => { :multipart => true } do |f| %>
-  <% if @member.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
-
-      <ul>
-      <% @member.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :avatar %><br>
-    <%= f.file_field :avatar %>
-  </div>
-  <div>
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<% if @member.errors.any? %>
+<div class="error_explanation">
+  <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+  <ul>
+    <% @member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    <%= end %>
+  </ul>
+</div>
 <% end %>
+
+<div class="field">
+  <%= f.label = first_name %><br>
+  <%= f.text_field :first_name %>
+</div>
+
+<div class="field">
+  <%= f.label :last_name <br>
+  <%= f.text_field :last_name %>
+</div>
+
+<div class="field">
+  <%= f.label :description %> <br>
+  <%= f.text_area :description %>
+</div>
+
+<div class="field">
+  <%= f.label :avatar %> <br>
+  <%= f.file_field :avatar %>
+</div>
+
+    <%= f.fields_for :member_info do |memberinfo_f| %>
+        <div class="field">
+          <%= memberinfo_f.label :gender %> <br>
+          gender: <%= memberinfo_f.select(:gender,[['f', 'f'], ['m', 'm']], :selected => @member.member_info.gender) %>
+        </div>
+
+        <div class="field">
+          <%= memberinfo_f.label :relationship_status %> <br>
+          status: <%= memberinfo_f.select(:relationship_status, [['single', 'single'], ['married', 'married']], :selected => @member.member_info.relationship_status) %>
+        </div>
+
+        <div class="field">
+          <%= memberinfo_f.label :smoker %>
+          <%= memberinfo_f.check_box :smoker, :value => @member.member_info.smoker %>
+        </div>
+
+        <div class="field">
+          <%= memberinfo_f.label :drinker %>
+          <%= memberinfo_f.check_box :drinker, :value => @member.member_info.drinker %>
+        </div>
+
+        <div class="field">
+          <%= memberinfo_f.label :age %> <br>
+          <%= memberinfo_f.number_field "age", :min => 18, :value => @member.member_info.age %>
+        </div>
+
+        <div class="field">
+          <%= memberinfo_f.label :children %> <br>
+          <%= memberinfo_f.number_field "children", :value =>@member.member_info.children %>
+        </div>
+<% end %>
+
+<%= fields_for :hobbies do |hobbies_f| %>
+    <div class="field">
+      Hobbies <br>
+      <% HobbyConstant::HOBBIES.each do |hobbyconst| %>
+          <label for="" class="li">
+            <%= check_box_tag :hobby, :name => hobbyconst %>
+            <u><%= hobbyconst %></u>
+          </label> <br>
+        <%= end %>
+    </div>
+<%= end %>
+
+<div class="actions">
+  <%= f.submit %>
+</div>
+<%= end %>
