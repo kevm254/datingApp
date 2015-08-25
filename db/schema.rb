@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825165005) do
+ActiveRecord::Schema.define(version: 20150825171000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,10 @@ ActiveRecord::Schema.define(version: 20150825165005) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.text     "message_text"
@@ -88,4 +91,5 @@ ActiveRecord::Schema.define(version: 20150825165005) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "member_infos", "members"
+  add_foreign_key "members", "users"
 end
