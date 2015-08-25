@@ -5,6 +5,7 @@ class MembersController < ApplicationController
   # GET /members.json
   def index
     @members = Member.all
+    render layout: "list_members"
   end
 
   # GET /members/1
@@ -25,7 +26,7 @@ class MembersController < ApplicationController
   # POST /members.json
   def create
     @member = Member.new(member_params)
-
+    params.require(:member).permit(:first_name, :last_name, :description, :avatar)
     respond_to do |format|
       if @member.save
         format.html { redirect_to @member, notice: 'Member was successfully created.' }
@@ -56,9 +57,15 @@ class MembersController < ApplicationController
   def destroy
     @member.destroy
     respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+      format.html { redirect_to members_url }
       format.json { head :no_content }
+      format.js
     end
+    # @member.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private

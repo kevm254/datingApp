@@ -1,16 +1,83 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require reset
- *= require_self
- */
+///*
+// * This is a manifest file that'll be compiled into application.css, which will include all the files
+// * listed below.
+// *
+// * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+// * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+// *
+// * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+// * compiled file so the styles you add here take precedence over styles defined in any styles
+// * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+// * file per style scope.
+// *
+// *= require_tree .
+// *= require reset
+// *= require_self
+// */
+//
+//nav {
+//  background-color: #2C5462;
+//  height: 40px;
+//}
+//
+//nav ul {
+//  font-family: Arial, Verdana;
+//  font-size: 20px;
+//  margin: 0;
+//  padding: 0;
+//  list-style: none;
+//}
+//
+//nav ul li {
+//  display: block;
+//  position: relative;
+//  float: left;
+//}
+//
+//nav li ul {
+//  display: none;
+//}
+//
+//nav ul li a {
+//  display: block;
+//  text-decoration: none;
+//  padding: 7px 15px 3px 15px;
+//  background: #2C5462;
+//  color: #fffffe;
+//  margin-left: 1px;
+//  white-space: nowrap;
+//  height: 30px;
+//  // width and height of top level nav items
+//  width: 90px;
+//  text-align: center;
+//}
+//
+//nav ul li a:hover {
+//  background: #617F8A;
+//}
+//
+//nav li:hover ul {
+//  display: block;
+//  position: absolute;
+//  height: 30px;
+//}
+//
+//nav li:hover li {
+//  float: none;
+//  font-size: 11px;
+//}
+//
+//nav li:hover a{
+//  background: #3A464F;
+//  height: 30px;
+//}
+//
+//nav li:hover li a:hover {
+//  background: #95A9B1;
+//}
+//
+//nav ul li ul li a {
+//  text-align: left;
+//
+//}
+//

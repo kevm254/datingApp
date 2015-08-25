@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dating</title>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <style type="text/css">
+    #wrap {
+        width: 100%;
+        margin: 0 auto;
+    }
+    #sidebar {
+        float: left;
+        width: 25%;
+        background-color: Aqua;
+    }
+    #content {
+        float: right;
+        width: 75%;
+    }
+
+  </style>
+</head>
+<body>
+    <%= render "layouts/header" %>
+    <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+    <% end %>
+    <div id="wrap">
+        <div id="sidebar">
+          <%= yield :sidebar %>
+        </div>
+        <div id="content">
+          <%= yield :content %>
+        </div>
+  </div>
+</body>
+</html>
